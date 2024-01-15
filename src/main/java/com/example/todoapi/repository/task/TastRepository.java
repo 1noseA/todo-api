@@ -14,8 +14,8 @@ public interface TastRepository {
     @Select("SELECT id, title FROM tasks WHERE id = #{taskId}")
     Optional<TaskRecord> select(long taskId);
 
-    @Select("SELECT id, title FROM tasks")
-    List<TaskRecord> selectList();
+    @Select("SELECT id, title FROM tasks LIMIT #{limit} OFFSET #{offset}")
+    List<TaskRecord> selectList(int limit, long offset);
 
     // MyBatisのinsertメソッドはvoidでないといけないので戻り値としてidを受け取れない
     // オートインクリメントしたidを受け取るには引数のTaskRecordのidにセットするよう以下を使用
