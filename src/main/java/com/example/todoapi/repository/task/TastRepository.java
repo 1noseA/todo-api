@@ -1,9 +1,6 @@
 package com.example.todoapi.repository.task;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +19,7 @@ public interface TastRepository {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("INSERT INTO tasks (title) VALUES (#{title})")
     void insert(TaskRecord record);
+
+    @Update("UPDATE tasks SET title = #{title} WHERE id = #{id}")
+    void update(TaskRecord taskRecord);
 }
